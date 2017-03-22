@@ -1,0 +1,133 @@
+class PigGame {
+
+	field Player player;
+	field ComputerAI computer;
+	field DieASCII dieArt;
+	field char command;
+	
+	/*Constructor for Pig Game object. Takes no parmeters. */
+	constructor PigGame new() {
+
+		let player = Player.new();
+		let computer = ComputerAI.new();
+		let dieArt = DieASCII.new();
+
+		return this;
+
+	}
+
+	/* Method for starting a new game of Pig */
+	method void run() {
+
+		var int dieRolled;
+
+		do Output.printString("New Game of Pig!");
+		do Output.println();
+
+		// Game runs in while loop until either player or CPU wins (e.g. scores over 100 pts)
+		while((player.getTotalScore() < 100) & (computer.getTotalScore() < 100)) {
+
+			if(player.checkIfPlayerTurn()) {
+				do updateScores();
+				do Output.printString("Press 'R' to Roll or 'H' to Hold.");
+
+				let command = Keyboard.readChar();
+				do Output.moveCursor(0,0);
+				do Screen.clearScreen();
+			}
+
+			//If not player's turn, then CPU goes
+			if(~(player.checkIfPlayerTurn())){
+
+				do player.resetTurnScore();
+				let dieRolled = computer.doTurn();
+				//do player.setNewTurn();
+				//do updateScores();
+
+				do Output.printString("~~~~~~~~~~~~~~~~~");
+				do Output.println();
+				do Output.println();
+				do Output.printString("Computer Scored ");
+				do Output.printInt(dieRolled);
+				do Output.printString(" On Its Turn. Your Up!");
+				do Output.println();
+				do Output.println();
+
+				do player.setNewTurn();
+			}
+
+			//If player hits "H" on their turn
+			if((command = 72) & player.checkIfPlayerTurn()) {
+				do player.hold();
+
+				let command = 0;
+				do Output.moveCursor(0,0);
+				do Screen.clearScreen();
+
+			}
+
+			//If player hits "R" on their turn
+			if((command = 82) & player.checkIfPlayerTurn()) {
+
+				let dieRolled = player.roll();
+				do Output.printString("You Rolled:");
+				do Output.println();
+				do Output.printString("~~~~~~~~~~~~");
+				do Output.println();
+				do Output.println();
+				do dieArt.printRoll(dieRolled);
+				do Output.println();
+				do Output.printString("Turn Score: ");
+				do Output.printInt(player.getTurnScore());
+				do Output.println();
+
+				let command = 0;
+			}
+		}
+
+		do checkWinner();
+
+		//deallocate memory for objects
+		do player.dispose();
+		do computer.dispose();
+		do dieArt.dispose();
+
+
+		return;
+	}
+
+	/* Method updates player and cpu scores and outputs them to screen */
+	method void updateScores() {
+		do Output.printString("Player Score: ");
+		do Output.printInt(player.getTotalScore());
+		do Output.println();
+		do Output.printString("Computer's Score: ");
+		do Output.printInt(computer.getTotalScore());
+		do Output.println();
+	
+		return;
+	}
+
+	/* Method for checking whether player or CPU won game and outputs appropriate notification */
+	method void checkWinner() {
+		if(computer.getTotalScore() > 99) {
+			do Output.printString("Sorry, You Lose! Please play again!");
+			do Output.println();
+		}
+
+		if(player.getTotalScore() > 99) {
+			do Output.printString("You WIN! Congratulations!");
+			do Output.println();
+		}
+
+		return;
+	}
+
+	/* Method for deallocating memory for game object */
+	method void dispose() {
+
+		do Memory.deAlloc(this);
+		return;
+	}
+
+}

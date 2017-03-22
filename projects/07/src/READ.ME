@@ -1,0 +1,11 @@
+To run the VM Translator, command line arguments must include input and output file paths. 
+The program will create the output file if it does not exist.
+
+The src file should include vmtranslator.py, codewriter.py, parser.py and StripFile.py.
+
+Example commandline argument from within src:
+python vmtranslator.py abs_path/infile.vm abs_path/outfile.asm
+
+Notes: Dealing with the static pop/push arguments in the StaticTest gave me the most trouble, but I found help
+in the nand2tetris forums. I'm still not terribly sure why they recommend passing the filename 
+as a variable concatenated with .<value>, but it seems to work. The vmtranslator worked for all of the tests.

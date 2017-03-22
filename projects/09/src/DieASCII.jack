@@ -1,0 +1,142 @@
+class DieASCII{
+
+	field int nPlaceHolder;
+	
+	/* Constructor for die ASCII art class */
+	/* Jack doesn't seem to like blank constructors it sets a placeholder variable that isn't used*/
+	constructor DieASCII new() {
+
+		let nPlaceHolder = 1000;
+
+		return this;
+
+	}
+
+	/*Method for outputing ASCII art for a die roll of 1 */
+	method void printRoll(int roll) {
+
+		if(roll = 1) { do printOne(); }
+		if(roll = 2) { do printTwo(); }
+		if(roll = 3) { do printThree(); }
+		if(roll = 4) { do printFour(); }
+		if(roll = 5) { do printFive(); }
+		if(roll = 6) { do printSix(); }
+
+		return;
+	}
+
+	/*Method for outputing ASCII art for a die roll of 2 */
+	method void printOne() {
+
+		do Output.printString(".~~~.");
+		do Output.println();
+		do Output.printString("|   |");
+		do Output.println();
+		do Output.printString("| 0 |");
+		do Output.println();
+		do Output.printString("|   |");
+		do Output.println();
+		do Output.printString("'~~~'");
+		do Output.println();
+
+		return;
+
+	}
+
+	/*Method for outputing ASCII art for a die roll of 1 */
+	method void printTwo() {
+
+		do Output.printString(".~~~.");
+		do Output.println();
+		do Output.printString("|0  |");
+		do Output.println();
+		do Output.printString("|   |");
+		do Output.println();
+		do Output.printString("|  0|");
+		do Output.println();
+		do Output.printString("'~~~'");
+		do Output.println();
+
+		return;
+
+	}
+
+	/*Method for outputing ASCII art for a die roll of 1 */
+	method void printThree() {
+
+		do Output.printString(".~~~.");
+		do Output.println();
+		do Output.printString("|0  |");
+		do Output.println();
+		do Output.printString("| 0 |");
+		do Output.println();
+		do Output.printString("|  0|");
+		do Output.println();
+		do Output.printString("'~~~'");
+		do Output.println();
+
+		return;
+
+	}
+
+	/*Method for outputing ASCII art for a die roll of 1 */
+	method void printFour() {
+
+		do Output.printString(".~~~.");
+		do Output.println();
+		do Output.printString("|0 0|");
+		do Output.println();
+		do Output.printString("|   |");
+		do Output.println();
+		do Output.printString("|0 0|");
+		do Output.println();
+		do Output.printString("'~~~'");
+		do Output.println();
+
+		return;
+
+	}
+
+	/*Method for outputing ASCII art for a die roll of 1 */
+	method void printFive() {
+
+		do Output.printString(".~~~.");
+		do Output.println();
+		do Output.printString("|0 0|");
+		do Output.println();
+		do Output.printString("| 0 |");
+		do Output.println();
+		do Output.printString("|0 0|");
+		do Output.println();
+		do Output.printString("'~~~'");
+		do Output.println();
+
+		return;
+
+	}
+
+	/*Method for outputing ASCII art for a die roll of 1 */
+	method void printSix() {
+
+		do Output.printString(".~~~.");
+		do Output.println();
+		do Output.printString("|0 0|");
+		do Output.println();
+		do Output.printString("|0 0|");
+		do Output.println();
+		do Output.printString("|0 0|");
+		do Output.println();
+		do Output.printString("'~~~'");
+		do Output.println();
+
+		return;
+
+	}
+
+	/*Method for deallocating memory for object */
+	method void dispose() {
+
+		do Memory.deAlloc(this);
+		return;
+	}
+}

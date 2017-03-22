@@ -1,0 +1,12 @@
+To run Assembler, arguments should include a input and output file. 
+The program will create the output file if it does not exist.
+
+There should be StripFile.py and SymbolConverter included in the src file.
+
+Example commandline input:
+python Assembler.py /path/input.asm /path/output.hack
+
+Notes: The assembler worked for all the dry tests and matched the dry test binary. I noticed
+The CPUEmulator returns an error on Rect.hack. It says "At line 12: Destination is M but A=24608
+is an illegal memory address." The binary lines up exactly which what the Assembly Emulator outputs
+from the .asm file provided so I'm not sure where the error comes from.

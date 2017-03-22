@@ -1,0 +1,62 @@
+class ComputerAI {
+	
+	field int nTotalScore;
+
+	/* Constructor for CPU that user plays. Sets initial score to 0 */
+	constructor ComputerAI new() {
+
+		let nTotalScore = 0;
+
+		return this;
+
+	}	
+
+	/* Method executes a full turn for the CPU, updates total score and returns points from turn */
+	method int doTurn() {
+
+		var int nTargetPoints;
+		var int nCurrentPoints;
+		var int nDieRoll;
+		var boolean bEndTurn;
+
+		//Choose target points for CPU needs to achieve before holding on a turn
+		let nTargetPoints = Random.between(5,20);
+		
+		let nCurrentPoints = 0;
+		let bEndTurn = false;		
+
+		//simulates computer rolls until either achieving target or rolling a 1
+
+		while ((nCurrentPoints < nTargetPoints) & ~(bEndTurn)) {
+			let nDieRoll = Random.between(1,6);
+
+			if(nDieRoll = 1)
+			{
+				let nCurrentPoints = 0;
+				let bEndTurn = true;
+			}
+			else
+			{
+				let nCurrentPoints = nCurrentPoints + nDieRoll;
+			}
+
+		}
+
+		let nTotalScore = nTotalScore + nCurrentPoints;
+
+		return nCurrentPoints;
+	}
+
+	/*Method for returning CPU's total score */
+	method int getTotalScore() {
+		return nTotalScore;
+	}
+
+	/*Method for deallocating memory for CPU */
+	method void dispose() {
+
+		do Memory.deAlloc(this);
+		return;
+	}
+
+}

@@ -1,0 +1,78 @@
+class Player{
+	
+	field int nScore;
+	field int nTurnScore;
+	field boolean bTurnOver;
+
+	/* Constructor for player object. Takes no parmeters*/
+	constructor Player new() {
+		let nScore = 0;
+		let nTurnScore = 0;
+		let bTurnOver = false;
+
+		return this;
+	}
+
+	/* Method for simulating a players roll */
+	method int roll() {
+		var int nDie;
+		let nDie = Random.between(1,6);
+
+		if(nDie = 1) {
+			let bTurnOver = true;
+			let nTurnScore = 0;
+		}
+
+		else {
+			let nTurnScore = nTurnScore + nDie;
+		}
+
+		return nDie;
+	}
+
+	/* Method for player to "Hold" to end turn and add points on turn to total score*/
+	method void hold() {
+		let nScore = nScore + nTurnScore;
+		let bTurnOver = true;
+		return;
+	}
+
+	/* Method returns score from a given turn as int */
+	method int getTurnScore() {
+		return nTurnScore;
+	}
+
+	/* Method for returning player's total score as int */
+	method int getTotalScore() {
+		return nScore;
+	}
+
+	/* Method updates boolean value to reflect that it is player's turn again */
+	method void setNewTurn() {
+		let bTurnOver = false;
+		return;
+	}
+
+	/* Method resets score on a given back to 0 */
+	method void resetTurnScore() {
+		let nTurnScore = 0;
+		return;
+	}
+
+	/* Method returns a boolean for whether or not it is the player's turn*/
+	method boolean checkIfPlayerTurn() {
+		if(bTurnOver) {
+			return false;
+		} 
+		else { 
+			return true; }
+	}
+
+	/* Method for deallocating memory for player object*/
+	method void dispose() {
+
+		do Memory.deAlloc(this);
+		return;
+	}
+
+}
